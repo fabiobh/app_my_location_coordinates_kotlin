@@ -34,9 +34,9 @@ class UpdateFragment : Fragment() {
 
         mLocationViewModel = ViewModelProvider(this)[LocationViewModel::class.java]
 
-        view.updateFirstName_et.setText(args.currentLocation.latitude)
-        view.updateLastName_et.setText(args.currentLocation.longitude)
-        view.updateAge_et.setText(args.currentLocation.placeName.toString())
+        view.updateLatitude_et.setText(args.currentLocation.latitude)
+        view.updateLongitude_et.setText(args.currentLocation.longitude)
+        view.updatePlaceName_et.setText(args.currentLocation.placeName.toString())
 
         view.updateButton.setOnClickListener {
             updateItem()
@@ -48,9 +48,9 @@ class UpdateFragment : Fragment() {
     }
 
     fun updateItem() {
-        val latitude = updateFirstName_et.text.toString()
-        val longitude = updateLastName_et.text.toString()
-        val placeName = updateAge_et.text.toString()
+        val latitude = updateLatitude_et.text.toString()
+        val longitude = updateLongitude_et.text.toString()
+        val placeName = updatePlaceName_et.text.toString()
 
         if ( inputCheck(latitude, longitude, placeName ) ) {
             val updateLocation = MyLocation(args.currentLocation.id, latitude, longitude, placeName)
@@ -94,13 +94,13 @@ class UpdateFragment : Fragment() {
             mLocationViewModel.deleteLocation(args.currentLocation)
             Toast.makeText(
                 requireContext(),
-                "Successfully removed ${args.currentLocation.placeName}",
+                "Successfully removed \"${args.currentLocation.latitude}\"",
                 Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
         builder.setNegativeButton("No"){ _, _ -> }
-        builder.setTitle("Delete ${args.currentLocation.placeName}?")
-        builder.setMessage("Are you sure you want to delete ${args.currentLocation.placeName}?")
+        builder.setTitle("Delete \"${args.currentLocation.latitude}\"?")
+        builder.setMessage("Are you sure you want to delete \"${args.currentLocation.latitude}\"?")
         builder.create().show()
     }
 
