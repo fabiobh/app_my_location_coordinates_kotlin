@@ -22,7 +22,7 @@ class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
 
-    private lateinit var mUserViewModel: LocationViewModel
+    private lateinit var mLocationViewModel: LocationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +32,11 @@ class UpdateFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_update, container, false)
 
-        mUserViewModel = ViewModelProvider(this)[LocationViewModel::class.java]
+        mLocationViewModel = ViewModelProvider(this)[LocationViewModel::class.java]
 
-        view.updateFirstName_et.setText(args.currentUser.latitude)
-        view.updateLastName_et.setText(args.currentUser.longitude)
-        view.updateAge_et.setText(args.currentUser.placeName.toString())
+        view.updateFirstName_et.setText(args.currentLocation.latitude)
+        view.updateLastName_et.setText(args.currentLocation.longitude)
+        view.updateAge_et.setText(args.currentLocation.placeName.toString())
 
         view.updateButton.setOnClickListener {
             updateItem()
@@ -53,8 +53,8 @@ class UpdateFragment : Fragment() {
         val placeName = updateAge_et.text.toString()
 
         if ( inputCheck(latitude, longitude, placeName ) ) {
-            val updateLocation = MyLocation(args.currentUser.id, latitude, longitude, placeName)
-            mUserViewModel.updateLocation(updateLocation)
+            val updateLocation = MyLocation(args.currentLocation.id, latitude, longitude, placeName)
+            mLocationViewModel.updateLocation(updateLocation)
             Toast.makeText(requireContext(), "Location succesfully updated", Toast.LENGTH_LONG ).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         } else {
@@ -83,24 +83,24 @@ class UpdateFragment : Fragment() {
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
         if (item.itemId == R.id.menu_delete) {
-            deleteUser()
+            deleteLocation()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteUser() {
+    private fun deleteLocation() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){ _, _ ->
-            mUserViewModel.deleteLocation(args.currentUser)
+            mLocationViewModel.deleteLocation(args.currentLocation)
             Toast.makeText(
                 requireContext(),
-                "Successfully removed ${args.currentUser.placeName}",
+                "Successfully removed ${args.currentLocation.placeName}",
                 Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
         builder.setNegativeButton("No"){ _, _ -> }
-        builder.setTitle("Delete ${args.currentUser.placeName}?")
-        builder.setMessage("Are you sure you want to delete ${args.currentUser.placeName}?")
+        builder.setTitle("Delete ${args.currentLocation.placeName}?")
+        builder.setMessage("Are you sure you want to delete ${args.currentLocation.placeName}?")
         builder.create().show()
     }
 

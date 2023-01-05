@@ -4,24 +4,24 @@ import androidx.lifecycle.LiveData
 import com.uaialternativa.mycoordinateslocation.data.LocationDao
 import com.uaialternativa.mycoordinateslocation.model.MyLocation
 
-class LocationRepository(private val userDao: LocationDao) {
+class LocationRepository(private val locationDao: LocationDao) {
 
-    val readAllData: LiveData<List<MyLocation>> = userDao.readAllData()
+    val readAllData: LiveData<List<MyLocation>> = locationDao.readAllData()
 
-    suspend fun addLocation(user: MyLocation) {
-        userDao.addLocation(user)
+    suspend fun addLocation(location: MyLocation) {
+        locationDao.addLocation(location)
     }
 
-    suspend fun updateLocation(user: MyLocation) {
-        userDao.updateLocation(user)
+    suspend fun updateLocation(location: MyLocation) {
+        locationDao.updateLocation(location)
     }
 
-    suspend fun deleteLocation(user: MyLocation) {
-        userDao.deleteLocation(user)
+    suspend fun deleteLocation(location: MyLocation) {
+        locationDao.deleteLocation(location)
     }
 
     suspend fun deleteAllLocations() {
-        userDao.deleteAllLocations()
+        locationDao.deleteAllLocations()
     }
 
 }

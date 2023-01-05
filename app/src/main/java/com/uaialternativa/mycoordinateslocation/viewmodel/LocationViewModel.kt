@@ -33,7 +33,7 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    //com.uaialternativa.mycoordinateslocation.data.model.User
+    //com.uaialternativa.mycoordinateslocation.data.model.MyLocation
     fun deleteLocation(location: MyLocation) {
         viewModelScope.launch ( Dispatchers.IO ) {
             repository.deleteLocation(location)

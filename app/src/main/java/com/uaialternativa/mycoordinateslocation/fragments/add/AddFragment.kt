@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_add.view.*
 
 class AddFragment : Fragment() {
 
-    private lateinit var mUserViewModel: LocationViewModel
+    private lateinit var mLocationViewModel: LocationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,7 @@ class AddFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add, container, false)
 
-        mUserViewModel = ViewModelProvider(this)[LocationViewModel::class.java]
+        mLocationViewModel = ViewModelProvider(this)[LocationViewModel::class.java]
 
         view.addButton.setOnClickListener {
             insertDataToDatabase()
@@ -44,9 +44,9 @@ class AddFragment : Fragment() {
         val age: String = addAge_et.text.toString()
 
         if(inputCheck(firstName, lastName, age)) {
-            // create user object
-            val user = MyLocation( 0, firstName, lastName, age )
-            mUserViewModel.addLocation(user)
+            // create location object
+            val location = MyLocation( 0, firstName, lastName, age )
+            mLocationViewModel.addLocation(location)
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
         } else {

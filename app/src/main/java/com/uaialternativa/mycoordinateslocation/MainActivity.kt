@@ -16,12 +16,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /*
-        Log.i("__x__","___ start main activity")
-        val user = User(7, "sdsd", "dsdsdsd", 26)
-        val db = UserDatabase.getDatabase(this)
+        val location = Location(7, "sdsd", "dsdsdsd", 26)
+        val db = LocationDatabase.getDatabase(this)
 
         coroutineScope.launch {
-            db.userDao().addUser(user)
+            db.locationDao().addLocation(location)
         }
         */
 

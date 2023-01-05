@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.uaialternativa.mycoordinateslocation.model.MyLocation
 
-// @Database(entities = [User::class], version = 1, exportSchema = false)
+// @Database(entities = [MyLocation::class], version = 1, exportSchema = false)
 @Database(entities = [MyLocation::class], version = 1)
 abstract class LocationDatabase: RoomDatabase() {
 
@@ -25,7 +25,7 @@ abstract class LocationDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     LocationDatabase::class.java,
-                    "user_database.db"
+                    "location_database.db"
                 ).allowMainThreadQueries().build()
                 INSTANCE = instance
                 return instance

@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListFragment : Fragment() {
 
-    private lateinit var mUserViewModel: LocationViewModel
+    private lateinit var mLocationViewModel: LocationViewModel
     private var lastLocation: Location? = null
 
     private var fusedLocationProvider: FusedLocationProviderClient? = null
@@ -53,10 +53,10 @@ class ListFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // UserViewModel
-        mUserViewModel = ViewModelProvider(this).get(LocationViewModel::class.java)
-        mUserViewModel.readAllData.observe( this.viewLifecycleOwner ) { user ->
-            adapter.setData(user)
+        // mLocationViewModel
+        mLocationViewModel = ViewModelProvider(this).get(LocationViewModel::class.java)
+        mLocationViewModel.readAllData.observe( this.viewLifecycleOwner ) { location ->
+            adapter.setData(location)
             if (adapter.itemCount != 0) { // show message "no Location on the list"
                 emptyTextMessage.visibility = View.GONE
             } else {
@@ -79,11 +79,11 @@ class ListFragment : Fragment() {
 
                 val latitudeString: String = lastLocation!!.latitude.toString()
                 val longitudeString: String = lastLocation!!.longitude.toString()
-                val placeNameString: String = "Edit this place name".toString()
+                val placeNameString: String = "Touch to edit this name".toString()
 
                 if (latitudeString != "") {
-                    val user = MyLocation(0, placeNameString, latitudeString, longitudeString)
-                    mUserViewModel.addLocation(user)
+                    val location = MyLocation(0, placeNameString, latitudeString, longitudeString)
+                    mLocationViewModel.addLocation(location)
                 }
 
             }
@@ -107,15 +107,15 @@ class ListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_delete) {
-            deleteAllUsers()
+            deleteAllLocations()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteAllUsers() {
+    private fun deleteAllLocations() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){ _, _ ->
-            mUserViewModel.deleteAllLocations()
+            mLocationViewModel.deleteAllLocations()
             Toast.makeText(
                 requireContext(),
                 "Successfully removed everything",

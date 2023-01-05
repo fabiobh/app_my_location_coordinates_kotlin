@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    private var userList = emptyList<MyLocation>()
+    private var locationList = emptyList<MyLocation>()
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -23,11 +23,11 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return locationList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = userList[position]
+        val currentItem = locationList[position]
         holder.itemView.id_txt.text = currentItem.id.toString()
         holder.itemView.firstName_txt.text = currentItem.latitude.toString()
         holder.itemView.lastName_txt.text = currentItem.longitude.toString()
@@ -40,7 +40,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
 
         /*
-        if ( userList.size != 0 ) {
+        if ( locationList.size != 0 ) {
             holder.itemView.emptyTextMessage.visibility = View.GONE
         }
         */
@@ -51,8 +51,8 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         }
     }
 
-    fun setData(user: List<MyLocation>) {
-        this.userList = user
+    fun setData(location: List<MyLocation>) {
+        this.locationList = location
         notifyDataSetChanged()
     }
 
