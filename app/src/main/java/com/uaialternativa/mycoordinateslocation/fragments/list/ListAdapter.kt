@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.uaialternativa.mycoordinateslocation.R
-import com.uaialternativa.mycoordinateslocation.model.User
+import com.uaialternativa.mycoordinateslocation.model.MyLocation
+import com.uaialternativa.mycoordinateslocation.util.dprint
 import kotlinx.android.synthetic.main.custom_row.view.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    private var userList = emptyList<User>()
+    private var userList = emptyList<MyLocation>()
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -27,9 +29,21 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = userList[position]
         holder.itemView.id_txt.text = currentItem.id.toString()
-        holder.itemView.firstName_txt.text = currentItem.firstName.toString()
-        holder.itemView.lastName_txt.text = currentItem.lastName.toString()
-        holder.itemView.age_txt.text = currentItem.age.toString()
+        holder.itemView.firstName_txt.text = currentItem.latitude.toString()
+        holder.itemView.lastName_txt.text = currentItem.longitude.toString()
+        holder.itemView.age_txt.text = currentItem.placeName.toString()
+
+        dprint("holder.itemView.emptyTextMessage.text.toString()")
+        dprint(holder.itemView.emptyTextMessage?.text.toString())
+        dprint("holder.itemView.age_txt.text")
+        dprint(holder.itemView.age_txt?.text.toString())
+
+
+        /*
+        if ( userList.size != 0 ) {
+            holder.itemView.emptyTextMessage.visibility = View.GONE
+        }
+        */
 
         holder.itemView.rowLayout.setOnClickListener {
             val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
@@ -37,7 +51,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         }
     }
 
-    fun setData(user: List<User>) {
+    fun setData(user: List<MyLocation>) {
         this.userList = user
         notifyDataSetChanged()
     }

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.uaialternativa.mycoordinateslocation.fragments.list.ListFragment"
-        android:label="List"
+        android:label="Locations List"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_addFragment"
@@ -29,13 +29,13 @@
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.uaialternativa.mycoordinateslocation.fragments.update.UpdateFragment"
-        android:label="fragment_update"
+        android:label="Location Edit"
         tools:layout="@layout/fragment_update" >
         <action
             android:id="@+id/action_updateFragment_to_listFragment"
             app:destination="@id/listFragment" />
         <argument
             android:name="currentUser"
-            app:argType="com.uaialternativa.mycoordinateslocation.model.User" />
+            app:argType="com.uaialternativa.mycoordinateslocation.model.MyLocation" />
     </fragment>
 </navigation>
