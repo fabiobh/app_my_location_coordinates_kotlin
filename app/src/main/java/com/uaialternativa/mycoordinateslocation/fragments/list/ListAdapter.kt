@@ -29,14 +29,14 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = locationList[position]
         holder.itemView.id_txt.text = currentItem.id.toString()
-        holder.itemView.firstName_txt.text = currentItem.latitude.toString()
-        holder.itemView.lastName_txt.text = currentItem.longitude.toString()
-        holder.itemView.age_txt.text = currentItem.placeName.toString()
+        holder.itemView.latitude_txt.text = currentItem.latitude.toString()
+        holder.itemView.longitude_txt.text = currentItem.longitude.toString()
+        holder.itemView.placeName_txt.text = currentItem.placeName.toString()
 
         dprint("holder.itemView.emptyTextMessage.text.toString()")
         dprint(holder.itemView.emptyTextMessage?.text.toString())
         dprint("holder.itemView.age_txt.text")
-        dprint(holder.itemView.age_txt?.text.toString())
+        dprint(holder.itemView.placeName_txt?.text.toString())
 
 
         /*

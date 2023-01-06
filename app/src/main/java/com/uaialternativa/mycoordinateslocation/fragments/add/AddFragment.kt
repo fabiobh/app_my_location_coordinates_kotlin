@@ -39,13 +39,13 @@ class AddFragment : Fragment() {
 
     private fun insertDataToDatabase() {
         dprint("insertDataToDatabase")
-        val firstName: String = addFirstName_et.text.toString()
-        val lastName: String = addLastName_et.text.toString()
-        val age: String = addAge_et.text.toString()
+        val latitude: String = addLatitude_et.text.toString()
+        val longitude: String = addLongitude_et.text.toString()
+        val placeName: String = addPlaceName_et.text.toString()
 
-        if(inputCheck(firstName, lastName, age)) {
+        if(inputCheck(latitude, longitude, placeName)) {
             // create location object
-            val location = MyLocation( 0, firstName, lastName, age )
+            val location = MyLocation( 0, latitude, longitude, placeName )
             mLocationViewModel.addLocation(location)
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
@@ -55,8 +55,8 @@ class AddFragment : Fragment() {
 
     }
 
-    private fun inputCheck(firstName: String, lastName: String, age: String): Boolean {
-        return !( TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(age) )
+    private fun inputCheck(latitude: String, longitude: String, placeName: String): Boolean {
+        return !( TextUtils.isEmpty(latitude) && TextUtils.isEmpty(longitude) && TextUtils.isEmpty(placeName) )
     }
 
 }

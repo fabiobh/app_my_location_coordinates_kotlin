@@ -64,8 +64,8 @@ class UpdateFragment : Fragment() {
     }
 
 
-    private fun inputCheck(firstName: String, lastName: String, age: String): Boolean {
-        return !( TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(age) )
+    private fun inputCheck(latitude: String, longitude: String, placeName: String): Boolean {
+        return !( TextUtils.isEmpty(latitude) && TextUtils.isEmpty(longitude) && TextUtils.isEmpty(placeName) )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -75,14 +75,11 @@ class UpdateFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        dprint("item id")
-        dprint(item.itemId.toString())
-
         if (item.itemId == android.R.id.home) {
             dprint("back arrow clicked")
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
-        if (item.itemId == R.id.menu_delete) {
+        else if (item.itemId == R.id.menu_delete) {
             deleteLocation()
         }
         return super.onOptionsItemSelected(item)

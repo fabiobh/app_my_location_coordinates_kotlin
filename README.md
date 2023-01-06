@@ -5,3 +5,4 @@ Android Project in progresss using the following technologies
 - Navigation
 - Room
 - MVVM
+- Constraint Layout
